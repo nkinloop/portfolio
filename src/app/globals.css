@@ -1,0 +1,191 @@
+/* Tailwind directives */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Base styles and CSS variables */
+@layer base {
+  :root {
+    --bg: #050915;
+    --bg-muted: #0a1022;
+    --glass: rgba(255, 255, 255, 0.04);
+    --glass-strong: rgba(255, 255, 255, 0.08);
+    --glass-border: rgba(255, 255, 255, 0.12);
+    --text: #e5e7eb;
+    --muted: #94a3b8;
+    --accent: #38bdf8;
+    --accent-strong: #0ea5e9;
+    --glow: rgba(14, 165, 233, 0.25);
+  }
+
+  [data-theme='violet'] {
+    --accent: #a78bfa;
+    --accent-strong: #8b5cf6;
+    --glow: rgba(139, 92, 246, 0.28);
+  }
+
+  [data-theme='amber'] {
+    --accent: #fbbf24;
+    --accent-strong: #f59e0b;
+    --glow: rgba(251, 191, 36, 0.25);
+  }
+
+  [data-theme='emerald'] {
+    --accent: #34d399;
+    --accent-strong: #10b981;
+    --glow: rgba(16, 185, 129, 0.25);
+  }
+
+  html {
+    scroll-behavior: smooth;
+    background: radial-gradient(circle at 20% 20%, rgba(56, 189, 248, 0.08), transparent 35%),
+      radial-gradient(circle at 80% 0%, rgba(167, 139, 250, 0.08), transparent 30%),
+      var(--bg);
+  }
+
+  body {
+    @apply text-slate-100 antialiased;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.01)),
+      var(--bg);
+    min-height: 100vh;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-semibold text-slate-50;
+  }
+}
+
+/* Reusable component classes */
+@layer components {
+  .shell {
+    @apply max-w-5xl lg:max-w-6xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  .glass-panel {
+    background: linear-gradient(135deg, var(--glass-strong), var(--glass));
+    border: 1px solid var(--glass-border);
+    backdrop-filter: blur(16px);
+    box-shadow: 0 10px 35px rgba(0, 0, 0, 0.35), 0 0 0 1px rgba(255, 255, 255, 0.02);
+  }
+
+  .glass-card {
+    @apply rounded-2xl p-6 md:p-8 transition-all duration-300 ease-smooth;
+    background: linear-gradient(145deg, var(--glass-strong), var(--glass));
+    border: 1px solid var(--glass-border);
+    backdrop-filter: blur(18px);
+  }
+
+  .glass-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 45px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(255, 255, 255, 0.04);
+    border-color: var(--accent-strong);
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl font-semibold transition-all duration-300 ease-smooth;
+    background: linear-gradient(135deg, var(--accent), var(--accent-strong));
+    color: #0b1222;
+    box-shadow: 0 10px 30px var(--glow);
+  }
+
+  .btn-primary:hover {
+    transform: translateY(-2px) scale(1.01);
+    box-shadow: 0 15px 40px var(--glow);
+  }
+
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl font-semibold transition-all duration-300 ease-smooth;
+    border: 1px solid var(--glass-border);
+    background: rgba(255, 255, 255, 0.03);
+    color: var(--text);
+  }
+
+  .btn-ghost:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+    transform: translateY(-2px);
+  }
+
+  .text-accent {
+    color: var(--accent);
+  }
+
+  .badge {
+    @apply text-xs font-semibold rounded-full px-3 py-1; 
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid var(--glass-border);
+  }
+
+  .chip {
+    @apply inline-flex items-center rounded-full px-3 py-1 text-xs font-semibold;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid var(--glass-border);
+    color: var(--text);
+  }
+
+  .chip-accent {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+
+  .nav-link {
+    @apply px-3 py-2 text-sm font-semibold rounded-xl transition-colors duration-200;
+    color: var(--muted);
+  }
+
+  .nav-link:hover {
+    color: var(--accent);
+    background: rgba(255, 255, 255, 0.03);
+  }
+
+  .nav-link-active {
+    color: var(--accent);
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid var(--glass-border);
+  }
+
+  .page-padding {
+    @apply py-16 md:py-20 lg:py-24;
+  }
+
+  .page-title {
+    @apply text-4xl md:text-5xl font-semibold;
+  }
+
+  .page-lead {
+    @apply text-base md:text-lg text-slate-300 leading-relaxed;
+    color: var(--muted);
+  }
+}
+
+/* Utilities and animations */
+@layer utilities {
+  .animate-fade-in-up {
+    animation: slideUp 0.5s ease-out forwards;
+  }
+
+  .animate-soft-glow {
+    box-shadow: 0 0 40px var(--glow);
+  }
+
+  .glass-border {
+    border: 1px solid var(--glass-border);
+  }
+}
+
+/* Keyframes */
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
